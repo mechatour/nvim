@@ -1,3 +1,4 @@
+-- Treesitter makes pretty code colours and it is super cool.
 return {
    "nvim-treesitter/nvim-treesitter",
    build = ":TSUpdate",
