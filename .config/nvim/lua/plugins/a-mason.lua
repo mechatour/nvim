@@ -19,7 +19,26 @@ return {
    {
       'williamboman/mason.nvim',
       config = function()
-         require("mason").setup()
+         require("mason").setup({
+            ensure_installed = {
+               "stylua",
+               "prettier",
+               "codelldb",
+               "debugpy",
+            }
+         })
+      end
+   },
+   {
+      'williamboman/mason-lspconfig.nvim',
+      config = function()
+         require("mason-lspconfig").setup({
+            ensure_installed = {
+               "lua_ls",
+               "zls",
+               "jedi_language_server",
+            }
+         })
       end
    },
 }

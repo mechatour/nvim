@@ -63,6 +63,8 @@ return {
 
       --debugger config for python
       dap.adapters.python = function(cb, config)
+         local home = os.getenv("HOME")
+         local python_path = home .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
          if config.request == "attach" then
             ---@diagnostic disable-next-line: undefined-field
             local port = (config.connect or config).port
@@ -79,7 +81,7 @@ return {
          else
             cb({
                type = "executable",
-               command = "/home/zane/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
+               command = python_path,
                args = { "-m", "debugpy.adapter" },
                options = {
                   source_filetype = "python",
