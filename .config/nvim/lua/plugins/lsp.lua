@@ -61,7 +61,7 @@ return {
                end,
             },
             mapping = cmp.mapping.preset.insert({
-               ['<right>'] = cmp.mapping.confirm({ select = true }),
+               ['<enter>'] = cmp.mapping.confirm({ select = true }),
             }),
          })
       end
