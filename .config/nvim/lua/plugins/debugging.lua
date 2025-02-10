@@ -13,15 +13,42 @@ return {
 
       -- configure codelldb adapter (C, C++, Rust and zig)
       dap.adapters.codelldb = {
-         type = "server",
-         port = "${port}",
-         executable = {
-            command = "codelldb",
-            args = { "--port", "${port}" },
+         type = "executable",
+         command = "codelldb",
+      }
+
+      -- configure C++
+      dap.configurations.cpp = {
+         {
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+               return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
          },
       }
 
-      -- setup a debugger config for zig projects
+      -- configure C
+      dap.configurations.c = dap.configurations.cpp
+
+      -- configure Rust
+      dap.configurations.rust = {
+         {
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+               return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
+         },
+      }
+
+      -- Configure zig
       dap.configurations.zig = {
          {
             name = "Launch",
@@ -70,15 +97,19 @@ return {
          dapui.open()
       end
       dap.listeners.before.event_terminated.dapui_config = function()
-         dapui.close()
+         vim.notify("Program terminated. <leader>dq to quit", vim.log.levels.INFO)
       end
       dap.listeners.before.event_exited.dapui_config = function()
-         dapui.close()
+         vim.notify("Program exited. <leader>dq to quit", vim.log.levels.INFO)
       end
 
       vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
       vim.keymap.set("n", "<Leader>dc", dap.continue, {})
       vim.keymap.set("n", "<Leader>do", dap.step_over, {})
       vim.keymap.set("n", "<Leader>di", dap.step_into, {})
+      vim.keymap.set("n", "<Leader>dq", function()
+         require("dapui").close()
+         require("dap").close()
+      end, {})
    end,
 }
