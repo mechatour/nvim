@@ -14,6 +14,7 @@ vim.cmd("set smartcase")
 vim.cmd("set hlsearch")
 vim.cmd("set showmatch")
 vim.g.mapleader = '\\'
+vim.g.maplocalleader = '\\'
 
 -- Coding
 vim.cmd("syntax on")
