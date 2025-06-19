@@ -1,6 +1,9 @@
 -- Default vim options
 require("vim-options")
 
+-- Mutt options
+require("mutt-options")
+
 -- LazyVim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

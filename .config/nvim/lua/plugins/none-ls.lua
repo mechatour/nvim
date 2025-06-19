@@ -3,17 +3,18 @@
 --
 -- The formatters, diagnostics (linters) and completions need to be installed by :Mason
 return {
-   {
-      "nvimtools/none-ls.nvim",
-      config = function()
-         local null_ls = require("null-ls")
-         null_ls.setup({
-            sources = {
-               null_ls.builtins.formatting.stylua, --Lua
-               null_ls.builtins.formatting.prettier, --Javascript Typescript Markdown css json html yaml
-            }
-         })
-      end,
-      requires = { "nvim-lua/plenary.nvim" },
-   },
+	{
+		"nvimtools/none-ls.nvim",
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.stylua, --Lua
+					null_ls.builtins.formatting.prettier, --Javascript Typescript Markdown css json html yaml
+               null_ls.builtins.completion.spell,
+				},
+			})
+		end,
+		requires = { "nvim-lua/plenary.nvim" },
+	},
 }

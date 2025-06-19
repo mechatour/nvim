@@ -43,6 +43,7 @@ return {
 			require("lspconfig").zls.setup({}) --Zig
 			require("lspconfig").rust_analyzer.setup({}) --Rust
 			require("lspconfig").jedi_language_server.setup({}) --Python
+			require("lspconfig").clangd.setup({}) --C C++
 		end,
 	},
 	{
