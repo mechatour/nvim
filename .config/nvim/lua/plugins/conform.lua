@@ -16,8 +16,10 @@ return {
             json = { "prettier" },
             yaml = { "prettier" },
 
-            cpp = { "clang-format" },
-            c = { "clang-format" },
+            cpp = { "clangformat" },
+            c = { "clangformat" },
+
+            kdl = { "kdlfmt" },
          },
          formatters = {
             stylua = {
@@ -36,10 +38,9 @@ return {
             },
             clangformat = {
                inherit = false,
-               command = "clangd",
+               command = "clang-format",
                args = {
-                  "--style=",
-                  "Google",
+                  [[-style={BasedOnStyle: Google, IndentWidth: 3}]],
                   "$FILENAME",
                   "-",
                },
