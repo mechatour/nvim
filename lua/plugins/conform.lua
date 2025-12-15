@@ -42,7 +42,6 @@ return {
                args = {
                   [[-style={BasedOnStyle: Google, IndentWidth: 3}]],
                   "$FILENAME",
-                  "-",
                },
             },
          },

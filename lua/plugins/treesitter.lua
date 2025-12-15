@@ -1,6 +1,7 @@
 -- Treesitter makes pretty code colours and it is super cool.
 return {
    "nvim-treesitter/nvim-treesitter",
+   lazy = false,
    build = ":TSUpdate",
    config = function()
       local config = require("nvim-treesitter.configs")
