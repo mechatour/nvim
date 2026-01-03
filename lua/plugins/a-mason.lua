@@ -30,6 +30,7 @@ return {
                   "codelldb",
                   "debugpy",
                   "black",
+                  "kdlfmt",
                },
             },
          })
